@@ -1,0 +1,62 @@
+/* Tweaks on top of github-markdown-css, plus the per-heading remove tools. */
+
+.markdown-body {
+  max-width: none;
+  padding: 32px;
+}
+
+/* Firefox can misrender GitHub table borders without explicit collapse rules. */
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid #d0d7de;
+}
+
+.empty {
+  color: #59636e;
+}
+
+.section-tools {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: 10px;
+  vertical-align: middle;
+  opacity: 0.35;
+  transition: opacity 0.15s;
+}
+
+.markdown-body :is(h1, h2, h3, h4, h5, h6):hover .section-tools,
+.section-tools:focus-within {
+  opacity: 1;
+}
+
+.section-tools button {
+  border: 1px solid #d1d9e0;
+  background: #ffffff;
+  color: #59636e;
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.section-tools button:hover {
+  border-color: #cf222e;
+  color: #cf222e;
+  filter: none;
+}
+
+.markdown-body .removed {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .markdown-body {
+    padding: 18px;
+  }
+}

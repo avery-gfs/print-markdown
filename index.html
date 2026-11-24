@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Markdown Print Renderer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.8.1/github-markdown-light.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css"
+    />
+    <link rel="stylesheet" href="styles/app.css" />
+    <link rel="stylesheet" href="styles/markdown.css" />
+    <link rel="stylesheet" href="styles/print.css" media="print" />
+    <script type="module" src="js/main.js"></script>
+  </head>
+  <body>
+    <main class="app">
+      <section class="controls">
+        <label class="field-label" for="urlInput">Markdown URL</label>
+        <div class="row">
+          <input
+            id="urlInput"
+            type="url"
+            placeholder="https://raw.githubusercontent.com/... or https://github.com/.../blob/.../README.md"
+          />
+          <button id="loadUrlButton" type="button">Load URL</button>
+        </div>
+
+        <div class="file-alt">
+          or
+          <label class="link-button">
+            open a local file
+            <input id="fileInput" type="file" accept=".md,.markdown,.mdown,.txt,text/markdown,text/plain" />
+          </label>
+        </div>
+
+        <div class="row">
+          <button id="printButton" class="secondary" type="button">Print</button>
+          <button id="restoreAllButton" class="secondary" type="button" disabled>
+            Restore sections
+          </button>
+          <button id="clearButton" class="secondary" type="button">Clear</button>
+        </div>
+
+        <p id="status" class="status">
+          Load a URL (or upload a file) to render markdown with GitHub-like styling.
+        </p>
+      </section>
+
+      <section class="paper">
+        <article id="output" class="markdown-body">
+          <p class="empty">No markdown loaded yet.</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

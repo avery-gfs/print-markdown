@@ -1,0 +1,96 @@
+/* Print layout. Loaded with media="print", so no @media wrapper is needed. */
+
+body {
+  background: #ffffff;
+}
+
+.app {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.controls,
+.section-tools {
+  display: none;
+}
+
+.paper {
+  border: 0;
+  border-radius: 0;
+}
+
+/* Paper is ~700px wide vs ~920px on screen; scale text down so lines
+   hold about as much as they do on screen. */
+.markdown-body {
+  padding: 0;
+  font-size: 12px;
+}
+
+/* Anything wider than the paper makes the browser shrink the whole
+   page to fit, so force wide content to wrap instead. */
+.markdown-body pre,
+.markdown-body pre code {
+  white-space: pre-wrap;
+  overflow: visible;
+  overflow-wrap: anywhere;
+}
+
+.markdown-body table {
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.markdown-body th,
+.markdown-body td {
+  overflow-wrap: anywhere;
+}
+
+/* Keep tables and code blocks on one page when they fit; ones longer
+   than a page still break, but never mid-row. */
+.markdown-body pre,
+.markdown-body table,
+.markdown-body blockquote,
+.markdown-body tr,
+.markdown-body img {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Don't leave a heading stranded at the bottom of a page. */
+.markdown-body :is(h1, h2, h3, h4, h5, h6) {
+  break-after: avoid;
+  page-break-after: avoid;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  /* own formatting context so the ::after margin below can't collapse
+     out of the heading */
+  display: flow-root;
+}
+
+/* Browsers don't reliably honor break-after: avoid, so reserve ~6rem (several lines)
+   below each heading: an unbreakable block that adds no net height.
+   If that space doesn't fit, the heading moves to the next page. */
+.markdown-body :is(h1, h2, h3, h4, h5, h6)::after {
+  content: "";
+  display: block;
+  height: 6rem;
+  margin-bottom: -6rem;
+}
+
+.markdown-body img,
+.markdown-body video,
+.markdown-body svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown-body :is(p, li, a, code) {
+  overflow-wrap: anywhere;
+}
+
+@page {
+  margin: 0.6in;
+}
