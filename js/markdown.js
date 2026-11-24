@@ -6,7 +6,10 @@ import DOMPurify from "https://esm.sh/dompurify@3.2.6";
 marked.use(
   markedHighlight({
     highlight(code, lang) {
-      if (lang && hljs.getLanguage(lang)) {
+      // Untagged code blocks are left plain; marked-highlight escapes
+      // the returned text when it is unchanged.
+      if (!lang) return code;
+      if (hljs.getLanguage(lang)) {
         return hljs.highlight(code, { language: lang }).value;
       }
       return hljs.highlightAuto(code).value;
